@@ -1,0 +1,10 @@
+node_modules
+dist
+dist-electron
+*.log
+dev_log*.txt
+.env
+.DS_Store
+.vscode
+out
+release
