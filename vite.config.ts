@@ -6,6 +6,7 @@ import react from '@vitejs/plugin-react'
 const isElectron = process.env.ELECTRON === 'true'
 
 export default defineConfig({
+    base: './',
     plugins: [
         react(),
         isElectron && electron([
