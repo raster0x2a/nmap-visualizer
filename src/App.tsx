@@ -15,6 +15,7 @@ import { NmapParser, Host, Port } from './lib/nmap-parser';
 import { HostNode } from './components/HostNode';
 import { PortNode } from './components/PortNode';
 import { DetailDrawer } from './components/DetailDrawer';
+import sampleNmapResult from '../assets/sample_nmap_result.txt?raw';
 
 const nodeTypes = {
     host: HostNode,
@@ -26,6 +27,10 @@ function App() {
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
     const [selectedData, setSelectedData] = useState<Host | Port | null>(null);
+
+    const handleLoadSample = useCallback(() => {
+        setNmapOutput(sampleNmapResult);
+    }, []);
 
     const handleParse = useCallback(() => {
         if (!nmapOutput.trim()) return;
@@ -104,13 +109,22 @@ function App() {
                     value={nmapOutput}
                     onChange={(e) => setNmapOutput(e.target.value)}
                 />
-                <button
-                    className="mt-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-6 rounded-lg transition-all shadow-lg hover:shadow-emerald-500/20 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
-                    onClick={handleParse}
-                    disabled={!nmapOutput.trim()}
-                >
-                    Visualize Network
-                </button>
+                <div className="mt-4 flex gap-2">
+                    <button
+                        className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-6 rounded-lg transition-all shadow-lg hover:shadow-emerald-500/20 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+                        onClick={handleParse}
+                        disabled={!nmapOutput.trim()}
+                    >
+                        Visualize Network
+                    </button>
+                    <button
+                        className="bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 px-6 rounded-lg transition-all shadow-lg active:scale-[0.98]"
+                        onClick={handleLoadSample}
+                        title="Load Sample Nmap Result"
+                    >
+                        Load Sample
+                    </button>
+                </div>
             </div>
             <div className="flex-1 flex flex-col bg-slate-950 relative">
                 {nodes.length > 0 ? (

@@ -1,0 +1,35 @@
+# Nmap 7.94 scan initiated Tue Feb 24 22:50:00 2026 as: nmap -sV -sC -oN scan.txt 192.168.1.1 192.168.1.100 192.168.1.105
+Nmap scan report for gateway (192.168.1.1)
+Host is up (0.0020s latency).
+PORT     STATE SERVICE VERSION
+80/tcp   open  http    nginx 1.18.0
+|_http-title: Router Configuration Page
+|_http-server-header: nginx/1.18.0
+443/tcp  open  ssl/http nginx 1.18.0
+|_http-title: Site doesn't have a title (text/html).
+| ssl-cert: Subject: commonName=gateway.local
+| Not valid before: 2024-01-01T00:00:00
+|_Not valid after:  2027-01-01T00:00:00
+
+Nmap scan report for ubuntu-server (192.168.1.100)
+Host is up (0.00050s latency).
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 be:1e:29:3b:0e:a5:e9:10:b9:81:38:bd:f8:47:55:69 (RSA)
+|_  256 f3:f1:f2:f3:f4:f5:f6:f7:f8:f9:fa:fb:fc:fd:fe:ff (ED25519)
+8080/tcp open  http    Apache Tomcat 9.0.31
+|_http-title: Apache Tomcat/9.0.31
+| port-ready: 
+|   status: ready
+|_  uptime: 152340s
+
+Nmap scan report for nas-storage (192.168.1.105)
+Host is up (0.0012s latency).
+PORT     STATE SERVICE VERSION
+445/tcp  open  microsoft-ds?
+|_smb-os-discovery: Windows 10 Pro
+2049/tcp open  nfs     4 (RPC: 100003)
+
+Post-scan report for 3 hosts
+# Nmap done at Tue Feb 24 22:55:00 2026 -- 3 IP addresses (3 hosts up) scanned in 300.00 seconds
